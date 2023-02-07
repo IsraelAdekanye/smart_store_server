@@ -19,5 +19,7 @@ const connection = async() => {
  
 };
 
-module.exports = {}
+module.exports = {
+    connection
+}
  
