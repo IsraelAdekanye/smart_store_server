@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { DB_URL } = require('../config');
 const queryAndLogic = require('./Queries & Logic')
 
-module.exports = async() => {
+const connection = async() => {
 
     try {
         await mongoose.connect(DB_URL, {
@@ -19,4 +19,5 @@ module.exports = async() => {
  
 };
 
+module.exports = {}
  
