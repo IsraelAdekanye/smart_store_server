@@ -5,6 +5,12 @@ const { databaseConnection } = require('./database');
 const { customer } = require('./api');
 const { CreateChannel } = require('./utils');
 
+app.use(cors());
+
+app.use(express.json());
+
+app.use(express.static(__dirname + '/public'))
+
 const StartServer = async() => {
 
     const app = express();
