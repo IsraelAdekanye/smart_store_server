@@ -11,6 +11,8 @@ app.use(express.json());
 
 app.use(express.static(__dirname + '/public'))
 
+customer(app, channel);
+
 const StartServer = async() => {
 
     const app = express();
