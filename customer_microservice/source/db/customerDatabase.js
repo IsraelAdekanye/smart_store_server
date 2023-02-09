@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { DB_URL } = require('../config');
-const queryAndLogic = require('./Queries & Logic')
+const CustomerQueryAndLogic = require('./Queries & Logic')
 
 const databaseConnection = async() => {
 
@@ -20,6 +20,6 @@ const databaseConnection = async() => {
 };
 
 module.exports = {
-    databaseConnection, queryAndLogic
+    databaseConnection, CustomerQueryAndLogic
 }
  

@@ -3,5 +3,7 @@ const { FormateData, GeneratePassword, GenerateSalt, GenerateSignature, Validate
 
 class CustomerService {
 
-    
+    constructor() {
+        this.logic = new queryAndLogic()
+    }
 }

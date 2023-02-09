@@ -3,7 +3,7 @@ const CustomerModel = require('../Models/customerModel')
 const AddressModel = require('../Models/addressModel')
 
 //Dealing with data base operations
-class CustomerRepository {
+class CustomerQueryAndLogic {
 
     async CreateCustomer({ email, password, phone, salt }){
 
@@ -175,4 +175,4 @@ class CustomerRepository {
 
 }
 
-module.exports = CustomerRepository;
+module.exports = CustomerQueryAndLogic;
