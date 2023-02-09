@@ -55,4 +55,15 @@ class CustomerService {
         const existingCustomer = await this.logic.FindCustomerById({id});
         return FormateData(existingCustomer);
     }
+
+    async GetShopingDetails(id){
+
+        const existingCustomer = await this.logic.FindCustomerById({id});
+
+        if(existingCustomer){
+            // const orders = await this.shopingRepository.Orders(id);
+           return FormateData(existingCustomer);
+        }       
+        return FormateData({ msg: 'Error'});
+    }
 }
