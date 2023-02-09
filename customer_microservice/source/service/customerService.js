@@ -40,4 +40,15 @@ class CustomerService {
         return FormateData({id: existingCustomer._id, token });
 
     }
+
+    async AddNewAddress(_id,userInputs){
+        
+        const { street, postalCode, city,country} = userInputs;
+    
+        const addressResult = await this.logic.CreateAddress({ _id, street, postalCode, city,country})
+
+        return FormateData(addressResult);
+    }
+
+    
 }
