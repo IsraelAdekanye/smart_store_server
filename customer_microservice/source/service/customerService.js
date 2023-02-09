@@ -50,5 +50,9 @@ class CustomerService {
         return FormateData(addressResult);
     }
 
-    
+    async GetProfile(id){
+
+        const existingCustomer = await this.logic.FindCustomerById({id});
+        return FormateData(existingCustomer);
+    }
 }
