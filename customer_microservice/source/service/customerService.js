@@ -11,7 +11,7 @@ class CustomerService {
 
         const { email, password } = userInputs;
         
-        const existingCustomer = await this.logic.FindCustomer ({ email});
+        const existingCustomer = await this.logic.FindCustomer({ email});
 
         if(existingCustomer){
             
@@ -23,5 +23,21 @@ class CustomerService {
         }
 
         return FormateData(null);
+    }
+
+    async SignUp(userInputs){
+        
+        const { email, password, phone } = userInputs;
+        
+        // create salt
+        let salt = await GenerateSalt();
+        
+        let userPassword = await GeneratePassword(password, salt);
+        
+        const existingCustomer = await this.logic.CreateCustomer({ email, password: userPassword, phone, salt});
+        
+        const token = await GenerateSignature({ email: email, _id: existingCustomer._id});
+        return FormateData({id: existingCustomer._id, token });
+
     }
 }
