@@ -66,4 +66,9 @@ class CustomerService {
         }       
         return FormateData({ msg: 'Error'});
     }
+
+    async GetWishList(customerId){
+        const wishListItems = await this.repository.Wishlist(customerId);
+        return FormateData(wishListItems);
+    }
 }
