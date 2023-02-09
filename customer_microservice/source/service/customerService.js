@@ -71,4 +71,5 @@ class CustomerService {
         const wishListItems = await this.repository.Wishlist(customerId);
         return FormateData(wishListItems);
     }
+    
 }
