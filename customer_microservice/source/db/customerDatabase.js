@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { DB_URL } = require('../config');
-const CustomerQueryAndLogic = require('./Queries & Logic')
+const CustomerQueryAndLogic = require('./Queries & Logic/customerQuery_Logic');
 
 const databaseConnection = async() => {
 
