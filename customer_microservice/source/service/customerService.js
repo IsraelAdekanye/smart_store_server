@@ -71,5 +71,9 @@ class CustomerService {
         const wishListItems = await this.repository.Wishlist(customerId);
         return FormateData(wishListItems);
     }
-    
+
+    async AddToWishlist(customerId, product){
+        const wishlistResult = await this.logic.AddWishlistItem(customerId, product);        
+       return FormateData(wishlistResult);
+   }
 }
