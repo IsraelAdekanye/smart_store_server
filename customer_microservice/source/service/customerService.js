@@ -80,5 +80,10 @@ class CustomerService {
    async ManageCart(customerId, product, qty, isRemove){
     const cartResult = await this.logic.AddCartItem(customerId, product, qty, isRemove);        
    return FormateData(cartResult);
-}
+    }
+
+    async ManageOrder(customerId, order){
+        const orderResult = await this.logic.AddOrderToProfile(customerId, order);
+        return FormateData(orderResult);
+    }
 }
