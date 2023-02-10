@@ -68,7 +68,7 @@ class CustomerService {
     }
 
     async GetWishList(customerId){
-        const wishListItems = await this.repository.Wishlist(customerId);
+        const wishListItems = await this.logic.Wishlist(customerId);
         return FormateData(wishListItems);
     }
 
