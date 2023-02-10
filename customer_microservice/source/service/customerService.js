@@ -76,4 +76,9 @@ class CustomerService {
         const wishlistResult = await this.logic.AddWishlistItem(customerId, product);        
        return FormateData(wishlistResult);
    }
+
+   async ManageCart(customerId, product, qty, isRemove){
+    const cartResult = await this.logic.AddCartItem(customerId, product, qty, isRemove);        
+   return FormateData(cartResult);
+}
 }
