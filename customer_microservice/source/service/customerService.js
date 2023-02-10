@@ -86,4 +86,15 @@ class CustomerService {
         const orderResult = await this.logic.AddOrderToProfile(customerId, order);
         return FormateData(orderResult);
     }
+
+    async SubscribeEvents(payload){
+ 
+        console.log('Triggering.... Customer Events')
+
+        payload = JSON.parse(payload)
+
+        const { event, data } =  payload;
+
+        const { userId, product, order, qty } = data;
+    }
 }
