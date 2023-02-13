@@ -41,7 +41,12 @@ module.exports = (app, channel) => {
     });
      
 
-    
+    app.get('/profile', UserAuth ,async (req,res,next) => {
+
+        const { _id } = req.user;
+        const { data } = await service.GetProfile({ _id });
+        res.json(data);
+    });
      
 
     
