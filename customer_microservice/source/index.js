@@ -2,8 +2,9 @@ const express = require('express');
 const cors  = require('cors');
 const { PORT } = require('./config');
 const { databaseConnection } = require('./database');
-const { customer } = require('./api');
+const customer = require('./api/customer');
 const { CreateChannel } = require('./utils');
+
 
 app.use(cors());
 
