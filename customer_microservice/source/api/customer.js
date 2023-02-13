@@ -6,6 +6,7 @@ module.exports = (app, channel) => {
     
     const service = new CustomerService();
 
+    // To listen
     SubscribeMessage(channel, service);
 
 
@@ -26,7 +27,18 @@ module.exports = (app, channel) => {
 
     });
 
-    
+    app.post('/address', UserAuth, async (req,res,next) => {
+        
+        const { _id } = req.user;
+
+
+        const { street, postalCode, city,country } = req.body;
+
+        const { data } = await service.AddNewAddress( _id ,{ street, postalCode, city,country});
+
+        res.json(data);
+
+    });
      
 
     
