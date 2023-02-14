@@ -18,7 +18,7 @@ const StartServer = async() => {
     
     await databaseConnection();
 
-    const channel = await CreateChannel()
+    // const channel = await CreateChannel()
     
     customer(app, channel);
 
