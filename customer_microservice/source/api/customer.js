@@ -7,7 +7,7 @@ module.exports = (app, channel) => {
     const service = new CustomerService();
 
     // To listen
-    SubscribeMessage(channel, service);
+    //SubscribeMessage(channel, service);
 
 
     app.post('/signup', async (req,res,next) => {
