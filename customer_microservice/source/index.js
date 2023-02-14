@@ -11,7 +11,7 @@ const { CreateChannel } = require('./utils');
 const StartServer = async() => {
 
     const app = express();
-    
+
     app.use(cors());
 
     app.use(express.json());
@@ -20,8 +20,8 @@ const StartServer = async() => {
     await databaseConnection();
 
     // const channel = await CreateChannel()
-    
-    customer(app, channel);
+    //let channel = null
+    customer(app);
 
     app.listen(PORT, () => {
           console.log(`listening to port ${PORT}`);
