@@ -17,10 +17,11 @@ const StartServer = async() => {
     app.use(express.json());
 
     app.use(express.static(__dirname + '/public'))
+    
     await databaseConnection();
 
     // const channel = await CreateChannel()
-    //let channel = null
+    // customer(app, channel);
     customer(app);
 
     app.listen(PORT, () => {

@@ -5,7 +5,7 @@ const CustomerQueryAndLogic = require('./Queries & Logic/customerQuery_Logic');
 const databaseConnection = async() => {
 
     try {
-        await mongoose.connect(DB_URL, {
+        await mongoose.connect('mongodb://localhost:27017/online_store_microservices', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
