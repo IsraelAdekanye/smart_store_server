@@ -1,6 +1,6 @@
 const express = require('express');
 const cors  = require('cors');
-const { PORT } = require('./config');
+const { PORT } = require('./config/index');
 const { databaseConnection } = require('./db/customerDatabase');
 const customer = require('./api/customer');
 const { CreateChannel } = require('./utils');
@@ -17,15 +17,16 @@ const StartServer = async() => {
     app.use(express.json());
 
     app.use(express.static(__dirname + '/public'))
-    
+
     await databaseConnection();
 
     // const channel = await CreateChannel()
     // customer(app, channel);
     customer(app);
 
-    app.listen(PORT, () => {
+    app.listen(3001, () => {
           console.log(`listening to port ${PORT}`);
+          console.log(PORT);
     })
     .on('error', (err) => {
         console.log(err);
