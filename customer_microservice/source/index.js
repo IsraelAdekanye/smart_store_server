@@ -24,8 +24,8 @@ const StartServer = async() => {
     // customer(app, channel);
     customer(app);
 
-    app.listen(3001, () => {
-          console.log(`listening to port ${PORT}`);
+    app.listen(PORT, () => {
+          console.log(`Customer Service is listening for requests on port ${PORT}`);
           console.log(PORT);
     })
     .on('error', (err) => {
