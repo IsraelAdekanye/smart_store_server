@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 const { DB_URL } = require('../config');
-const dotEnv = require("dotenv");
 const CustomerQueryAndLogic = require('./Queries & Logic/customerQuery_Logic');
 
 
 const databaseConnection = async() => {
 
     try {
-        await mongoose.connect(process.env.MONGODB_URI, {
+        await mongoose.connect(DB_URL, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
@@ -16,7 +15,7 @@ const databaseConnection = async() => {
         
     } catch (error) {
         console.error('Error ============ ON DB Connection')
-        console.log(error);
+        console.log(DB_URL);
     }
  
 };
