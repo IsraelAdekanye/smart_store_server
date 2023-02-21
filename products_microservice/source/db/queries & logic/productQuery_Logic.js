@@ -35,6 +35,10 @@ class ProductRepository {
         return products;
     }
 
+    async FindSelectedProducts(selectedIds){
+        const products = await ProductModel.find().where('_id').in(selectedIds.map(_id => _id)).exec();
+        return products;
+    }
     
 }
 
