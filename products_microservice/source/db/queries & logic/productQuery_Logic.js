@@ -21,7 +21,12 @@ class ProductRepository {
      async Products(){
         return await ProductModel.find();
     }
+   
+    async FindById(id){
+        
+       return await ProductModel.findById(id);
 
+    }
 
 
 
