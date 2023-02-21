@@ -28,7 +28,12 @@ class ProductRepository {
 
     }
 
+    async FindByCategory(category){
 
+        const products = await ProductModel.find({ type: category});
+
+        return products;
+    }
 
     
 }
