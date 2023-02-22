@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { ProductModel } = require("../models");
 
 //Dealing with data base operations
-class ProductRepository {
+class ProductQueryAndLogic {
 
 
     async CreateProduct({ name, desc, type, unit,price, available, suplier, banner }){
@@ -42,4 +42,4 @@ class ProductRepository {
     
 }
 
-module.exports = ProductRepository;
+module.exports = ProductQueryAndLogic;
