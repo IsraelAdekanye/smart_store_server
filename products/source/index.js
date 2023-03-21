@@ -21,11 +21,14 @@ const StartServer = async() => {
     await databaseConnection();
 
     app.listen(PRODUCT_PORT, () => {
-        console.log(`listening to port ${PRODUCT_PORT}`);
+        console.log(`Products Service is listening for requests on port ${PRODUCT_PORT}`);
     })
     .on('error', (err) => {
         console.log(err);
         process.exit();
+    })
+    .on('close', () => {
+        channel.close();
     })
 
 }

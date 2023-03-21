@@ -64,7 +64,6 @@ const products = (app, channel) => {
       "ADD_TO_WISHLIST"
     );
 
-    // PublishCustomerEvent(data);
     PublishMessage(channel, CUSTOMER_SERVICE, JSON.stringify(data));
 
     res.status(200).json(data.data.product);
@@ -79,7 +78,6 @@ const products = (app, channel) => {
       { productId },
       "REMOVE_FROM_WISHLIST"
     );
-    // PublishCustomerEvent(data);
     PublishMessage(channel, CUSTOMER_SERVICE, JSON.stringify(data));
 
     res.status(200).json(data.data.product);
@@ -93,9 +91,6 @@ const products = (app, channel) => {
       { productId: req.body._id, qty: req.body.qty },
       "ADD_TO_CART"
     );
-
-    // PublishCustomerEvent(data);
-    // PublishShoppingEvent(data);
 
     PublishMessage(channel, CUSTOMER_SERVICE, JSON.stringify(data));
     PublishMessage(channel, SHOPPING_SERVICE, JSON.stringify(data));
@@ -115,9 +110,6 @@ const products = (app, channel) => {
       "REMOVE_FROM_CART"
     );
 
-    // PublishCustomerEvent(data);
-    // PublishShoppingEvent(data);
-
     PublishMessage(channel, CUSTOMER_SERVICE, JSON.stringify(data));
     PublishMessage(channel, SHOPPING_SERVICE, JSON.stringify(data));
 
@@ -126,10 +118,8 @@ const products = (app, channel) => {
     res.status(200).json(response);
   });
 
-  app.get("/whoami", (req, res, next) => {
-    return res
-      .status(200)
-      .json({ msg: "/ or /products : I am products Service" });
+  app.post("/whoami", async (req,res,next) => {
+    return res.status(200).json({msg: 'I am Prodducts Service'});
   });
 
   //get Top products and category
@@ -139,7 +129,7 @@ const products = (app, channel) => {
       const { data } = await service.GetProducts();
       return res.status(200).json(data);
     } catch (error) {
-      return res.status(404).json({ error });
+      return res.status(404).json({ error: "ds" });
     }
   });
 };

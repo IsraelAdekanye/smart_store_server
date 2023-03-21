@@ -63,6 +63,6 @@ module.exports = (app, channel) => {
     });
 
     app.get('/whoami', (req,res,next) => {
-        return res.status(200).json({msg: '/customer : I am Customer Service'})
+        return res.status(200).json({msg: 'I am Customer Service'})
     })
 }

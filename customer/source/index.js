@@ -20,13 +20,13 @@ const StartServer = async() => {
 
     await databaseConnection();
 
-    // const channel = await CreateChannel()
-    // customer(app, channel);
-    customer(app);
+    const channel = await CreateChannel()
+    
+    customer(app, channel);
+
 
     app.listen(PORT, () => {
           console.log(`Customer Service is listening for requests on port ${PORT}`);
-          console.log(PORT);
     })
     .on('error', (err) => {
         console.log(err);

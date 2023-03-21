@@ -1,5 +1,6 @@
+const ProductModel = require('../models/productModel')
 const mongoose = require('mongoose');
-const { ProductModel } = require("../models/productModel");
+
 
 //Dealing with data base operations
 class ProductQueryAndLogic {
