@@ -7,7 +7,7 @@ const {
 } = require("../utils");
 const UserAuth = require("./middlewares/auth");
 
-module.exports = (app, channel) => {
+const products = (app, channel) => {
   const service = new ProductService();
 
   app.post("/product/create", async (req, res, next) => {
@@ -143,3 +143,5 @@ module.exports = (app, channel) => {
     }
   });
 };
+
+module.exports = {products};

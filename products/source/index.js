@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require("cors");
 const { PRODUCT_PORT } = require('./config');
-const { databaseConnection } = require('./database');
-const { products } = require("./api");
+const { databaseConnection } = require('./db/productDatabase');
+const { products } = require("./api/products");
 
 const { CreateChannel } = require("./utils");
 
@@ -20,7 +20,7 @@ const StartServer = async() => {
     
     await databaseConnection();
 
-    app.listen(PORT, () => {
+    app.listen(PRODUCT_PORT, () => {
         console.log(`listening to port ${PRODUCT_PORT}`);
     })
     .on('error', (err) => {

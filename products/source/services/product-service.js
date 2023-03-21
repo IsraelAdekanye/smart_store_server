@@ -1,22 +1,21 @@
-const { ProductRepository } = require("../database");
+const { ProductQueryAndLogic } = require("../db/productDatabase");
 const { FormateData } = require("../utils");
 
 // All Business logic will be here
 class ProductService {
-
-    constructor(){
-        this.repository = new ProductRepository();
-    }
     
+    constructor(){
+        this.logic = new ProductQueryAndLogic();
+    }
 
     async CreateProduct(productInputs){
 
-        const productResult = await this.repository.CreateProduct(productInputs)
+        const productResult = await this.logic.CreateProduct(productInputs)
         return FormateData(productResult);
     }
     
     async GetProducts(){
-        const products = await this.repository.Products();
+        const products = await this.logic.Products();
 
         let categories = {};
 
@@ -33,26 +32,26 @@ class ProductService {
 
     async GetProductDescription(productId){
         
-        const product = await this.repository.FindById(productId);
+        const product = await this.logic.FindById(productId);
         return FormateData(product)
     }
 
     async GetProductsByCategory(category){
 
-        const products = await this.repository.FindByCategory(category);
+        const products = await this.logic.FindByCategory(category);
         return FormateData(products)
 
     }
 
     async GetSelectedProducts(selectedIds){
         
-        const products = await this.repository.FindSelectedProducts(selectedIds);
+        const products = await this.logic.FindSelectedProducts(selectedIds);
         return FormateData(products);
     }
 
     async GetProductPayload(userId,{ productId, qty },event){
 
-         const product = await this.repository.FindById(productId);
+         const product = await this.logic.FindById(productId);
 
         if(product){
              const payload = { 
