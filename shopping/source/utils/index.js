@@ -5,7 +5,7 @@ const amqplib = require("amqplib");
 const {
   APP_SECRET,
   EXCHANGE_NAME,
-  SHOPPING_SERVICE,
+  SHOPPING_BINDING_KEY,
   MSG_QUEUE_URL,
 } = require("../config");
 
@@ -62,7 +62,7 @@ module.exports.CreateChannel = async () => {
   try {
     const connection = await amqplib.connect(MSG_QUEUE_URL);
     const channel = await connection.createChannel();
-    await channel.assertQueue(EXCHANGE_NAME, "direct", { durable: true });
+    //await channel.assertQueue(EXCHANGE_NAME, "direct", { durable: true });
     return channel;
   } catch (err) {
     throw err;
@@ -79,7 +79,7 @@ module.exports.SubscribeMessage = async (channel, service) => {
   const q = await channel.assertQueue("SHOPPING QUEUE", { exclusive: true });
   console.log(` Waiting for messages in queue: ${q.queue}`);
 
-  channel.bindQueue(q.queue, EXCHANGE_NAME, SHOPPING_SERVICE);
+  channel.bindQueue(q.queue, EXCHANGE_NAME, SHOPPING_BINDING_KEY);
 
   channel.consume(
     q.queue,

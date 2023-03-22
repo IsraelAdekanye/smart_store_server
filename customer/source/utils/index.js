@@ -5,7 +5,7 @@ const amqplib = require("amqplib");
 const {
   APP_SECRET,
   EXCHANGE_NAME,
-  CUSTOMER_SERVICE,
+  CUSTOMER_BINDING_KEY,
   MSG_QUEUE_URL,
 } = require("../config");
 
@@ -61,24 +61,24 @@ module.exports.CreateChannel = async () => {
   try {
     const connection = await amqplib.connect(MSG_QUEUE_URL);
     const channel = await connection.createChannel();
-    await channel.assertQueue(EXCHANGE_NAME, "direct", { durable: true });
+    //await channel.assertQueue(EXCHANGE_NAME, "direct", { durable: true });
     return channel;
   } catch (err) {
     throw err;
   }
 };
 
-module.exports.PublishMessage = (channel, service, msg) => {
-  channel.publish(EXCHANGE_NAME, service, Buffer.from(msg));
-  console.log("Sent: ", msg);
-};
+// module.exports.PublishMessage = (channel, service, msg) => {
+//   channel.publish(EXCHANGE_NAME, service, Buffer.from(msg));
+//   console.log("Sent: ", msg);
+// };
 
 module.exports.SubscribeMessage = async (channel, service) => {
   await channel.assertExchange(EXCHANGE_NAME, "direct", { durable: true });
   const q = await channel.assertQueue("CUSTOMER QUEUE", { exclusive: true });
   console.log(` Waiting for messages in queue: ${q.queue}`);
 
-  channel.bindQueue(q.queue, EXCHANGE_NAME, CUSTOMER_SERVICE);
+  channel.bindQueue(q.queue, EXCHANGE_NAME, CUSTOMER_BINDING_KEY);
 
   channel.consume(
     q.queue,
