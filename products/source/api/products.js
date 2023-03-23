@@ -65,7 +65,7 @@ const products = (app, channel) => {
     );
 
     PublishMessage(channel, CUSTOMER_BINDING_KEY, JSON.stringify(data));
-
+    
     res.status(200).json(data.data.product);
   });
 
