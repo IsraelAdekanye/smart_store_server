@@ -1,69 +1,56 @@
 version: "3"
 services:
-  amqp:
-    image: rabbitmq:3.12.0-beta.2-management
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    container_name: amqp
-  nosql-db:
-    image: mongo
-    ports:
-      - "27018:27017"
-    container_name: nosql-db
-    depends_on:
-      - "amqp"
-    volumes:
-      - ./db/:/data/db
   products:
     build:
       dockerfile: Dockerfile
       context: ./products
     container_name: products
     ports:
-      - "8002:8002"
+      - "3002:3002"
     restart: always
-    depends_on:
-      - "nosql-db"
-      - "amqp"
     volumes:
       - .:/app
       - /app/products/node_modules
-
-    env_file:
-      - ./products/.env.dev
+    environment:
+    - APP_SECRET=That is a secret
+    - MONGODB_URI=mongodb+srv://hizzy:NTfzTQd9etm5hDa@cluster0.0q5tlez.mongodb.net/?retryWrites=true&w=majority
+    - MSG_QUEUE_URL=amqps://yvfvscrv:JkGO_UEQFu7IdakIjklh4vU5fokPBhqp@jackal.rmq.cloudamqp.com/yvfvscrv
+    - EXCHANGE_NAME=ONLINE_STORE
+    - PORT=3002
   shopping:
     build:
       dockerfile: Dockerfile
       context: ./shopping
     container_name: shopping
     ports:
-      - "8003:8003"
+      - "3003:3003"
     restart: always
-    depends_on:
-      - "nosql-db"
-      - "amqp"
     volumes:
       - .:/app
       - /app/shopping/node_modules
-    env_file:
-      - ./shopping/.env.dev
+    environment:
+    - APP_SECRET=That is a secret
+    - MONGODB_URI=mongodb+srv://hizzy:NTfzTQd9etm5hDa@cluster0.0q5tlez.mongodb.net/?retryWrites=true&w=majority
+    - MSG_QUEUE_URL=amqps://yvfvscrv:JkGO_UEQFu7IdakIjklh4vU5fokPBhqp@jackal.rmq.cloudamqp.com/yvfvscrv
+    - EXCHANGE_NAME=ONLINE_STORE
+    - PORT=3003
   customer:
     build:
       dockerfile: Dockerfile
       context: ./customer
     container_name: customer
     ports:
-      - "8001:8001"
+      - "3001:3001"
     restart: always
-    depends_on:
-      - "nosql-db"
-      - "amqp"
     volumes:
       - .:/app/
       - /app/customer/node_modules
-    env_file:
-      - ./customer/.env.dev
+    environment:
+    - APP_SECRET=That is a secret
+    - MONGODB_URI=mongodb+srv://hizzy:NTfzTQd9etm5hDa@cluster0.0q5tlez.mongodb.net/?retryWrites=true&w=majority
+    - MSG_QUEUE_URL=amqps://yvfvscrv:JkGO_UEQFu7IdakIjklh4vU5fokPBhqp@jackal.rmq.cloudamqp.com/yvfvscrv
+    - EXCHANGE_NAME=ONLINE_STORE
+    - PORT=3001
   nginx-proxy:
     build:
       dockerfile: Dockerfile
